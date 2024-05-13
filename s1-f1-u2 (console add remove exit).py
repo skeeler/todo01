@@ -1,0 +1,49 @@
+todo_list = []
+
+#
+# F1-U2 Step 1
+# https://github.com/microsoft/EveryoneCanCode-US/blob/main/Track_1_ToDo_App/Sprint-01%20-%20Basic%20Application/Feature%201%20-%20Manage%20Todo%20List/User%20Story%202%20-%20Remove%20Item%20from%20List.md#updating-the-code-base-for-new-functionality
+#
+# continue to loop and display menu until the user selects to exit the program
+while True:
+    print() # add a couple of blank lines
+    print()
+    print("To-do list: ") # print the title of the list
+    for i, todo in enumerate(todo_list, start=1): # loop through existing to-do items with item number
+        print(f"{i}. {todo}") # print item number and todo item
+
+    # Print the menu
+    print() # add a blank line
+    print("Actions:")
+    print("A - Add to-do item")
+    print("R - Remove to-do item")
+    print("X - Exit")
+    choice = input("Enter your choice (A, R, or X): ")
+    choice = choice.upper() # converts the choice to uppercase
+
+    # user selected 'a' or 'A' to add an item to the list
+    if choice == "A":
+        todo = input("Enter the to-do item: ") 
+        todo_list.append(todo)
+        continue  # tells the program to go back to the start of the loop
+        # user selected 'r' or 'R' to remove an item from the list
+
+    if choice == "R":
+        item_number = input("Enter the item number to remove: ")
+        try:
+            item_number = int(item_number)
+            if item_number >= 1 and item_number <= len(todo_list):
+                todo_list.pop(item_number - 1)
+                continue  # tells the program to go back to the start of the loop
+            else:
+                print("Invalid item number")
+        except ValueError:
+            print("Invalid item number")
+
+    # user selected 'x' or 'X' to exit the program
+    if choice == "X":
+        break # tells the program to exit the loop
+
+    # user selected something else
+    print("Invalid choice")
+
